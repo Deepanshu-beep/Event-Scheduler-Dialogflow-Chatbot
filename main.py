@@ -23,7 +23,7 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
     bot_response = ""
 
     for text in texts:
-        text_input = dialogflow.TextInput(text="Hi i am traveling tomorrow.", language_code=language_code)
+        text_input = dialogflow.TextInput(text, language_code=language_code)
 
         query_input = dialogflow.QueryInput(text=text_input)
 
@@ -34,8 +34,6 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
         bot_response = " ".join([bot_response, response.query_result.fulfillment_text])
     
     return bot_response
-
-# [END dialogflow_es_detect_intent_text]
 
 @textbase.chatbot("talking-bot")
 def on_message(message_history: List[Message], state: dict = None):
